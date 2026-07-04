@@ -1,0 +1,1424 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>滇南慢游 · 一老一少 8晚9天旅行图鉴</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700;900&family=Noto+Sans+SC:wght@300;400;500;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+<style>
+/* ============================================================
+   设计系统 / Design Tokens
+   ============================================================ */
+:root{
+  --paper:#f6f1e7;
+  --paper-2:#efe8da;
+  --paper-3:#e8dfcd;
+  --ink:#1b201a;
+  --ink-soft:#3a3f37;
+  --muted:#857c6b;
+  --line:#d9cfb9;
+
+  --jade:#1f6f5c;
+  --jade-deep:#155444;
+  --jade-glow:#3d9c83;
+  --terra:#b5532a;
+  --terra-soft:#c96a3a;
+  --gold:#bf8b2e;
+  --gold-glow:#e3b94a;
+  --plum:#5b3a52;
+  --danger:#a83232;
+
+  --r-sm:10px; --r-md:16px; --r-lg:24px; --r-xl:34px;
+  --shadow-1:0 1px 2px rgba(27,32,26,.06), 0 6px 18px rgba(27,32,26,.06);
+  --shadow-2:0 8px 30px rgba(27,32,26,.10), 0 2px 8px rgba(27,32,26,.06);
+  --shadow-3:0 30px 70px rgba(27,32,26,.18);
+  --serif:"Noto Serif SC","Cormorant Garamond",serif;
+  --sans:"Noto Sans SC",system-ui,-apple-system,sans-serif;
+  --display:"Cormorant Garamond","Noto Serif SC",serif;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--sans);
+  background:var(--paper);
+  color:var(--ink);
+  line-height:1.7;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+  background-image:
+    radial-gradient(1200px 600px at 80% -5%, rgba(191,139,46,.10), transparent 60%),
+    radial-gradient(900px 500px at -10% 30%, rgba(31,111,92,.08), transparent 55%);
+}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+
+/* paper grain overlay */
+body::before{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:1;opacity:.35;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.1 0 0 0 0 0.1 0 0 0 0 0.08 0 0 0 0.06 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  mix-blend-mode:multiply;
+}
+
+/* scroll progress */
+#progress{
+  position:fixed;top:0;left:0;height:3px;width:0%;z-index:1000;
+  background:linear-gradient(90deg,var(--jade),var(--gold) 60%,var(--terra));
+  box-shadow:0 0 12px rgba(191,139,46,.6);
+}
+
+/* ============================================================
+   顶部导航
+   ============================================================ */
+.topnav{
+  position:fixed;top:0;left:0;right:0;z-index:900;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:14px clamp(16px,4vw,48px);
+  background:rgba(246,241,231,.72);
+  backdrop-filter:blur(14px) saturate(140%);
+  -webkit-backdrop-filter:blur(14px) saturate(140%);
+  border-bottom:1px solid transparent;
+  transition:border-color .4s ease, background .4s ease;
+}
+.topnav.scrolled{border-color:var(--line)}
+.brand{display:flex;align-items:center;gap:10px;font-family:var(--serif);font-weight:700;font-size:1.05rem;letter-spacing:.04em}
+.brand .seal{
+  width:30px;height:30px;border-radius:8px;display:grid;place-items:center;
+  background:linear-gradient(135deg,var(--jade),var(--jade-deep));color:#fff;
+  font-family:var(--serif);font-size:.95rem;box-shadow:var(--shadow-1);
+}
+.topnav nav{display:none;gap:26px;font-size:.86rem;color:var(--ink-soft)}
+.topnav nav a{position:relative;padding:4px 0;transition:color .3s}
+.topnav nav a::after{content:"";position:absolute;left:0;bottom:-2px;height:2px;width:0;background:var(--gold);transition:width .35s cubic-bezier(.2,.8,.2,1)}
+.topnav nav a:hover{color:var(--ink)}
+.topnav nav a:hover::after{width:100%}
+@media(min-width:860px){.topnav nav{display:flex}}
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero{
+  position:relative;min-height:100vh;display:flex;flex-direction:column;
+  justify-content:center;padding:120px clamp(20px,6vw,90px) 80px;
+  overflow:hidden;
+  background:
+    radial-gradient(900px 500px at 75% 12%, rgba(227,185,74,.16), transparent 60%),
+    linear-gradient(180deg,#10221c 0%, #16352a 45%, #1f6f5c 100%);
+  color:#f6f1e7;
+}
+.hero .sky{position:absolute;inset:0;overflow:hidden;z-index:0}
+.sun{
+  position:absolute;top:18%;right:14%;width:220px;height:220px;border-radius:50%;
+  background:radial-gradient(circle at 50% 50%, #ffe7a8, #e3b94a 45%, rgba(227,185,74,0) 70%);
+  filter:blur(.3px);opacity:.9;
+}
+.mountain{
+  position:absolute;left:0;right:0;bottom:0;height:42%;width:100%;
+}
+.lake-shimmer{
+  position:absolute;left:0;right:0;bottom:0;height:14%;
+  background:linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,0));
+}
+.float-leaf{position:absolute;opacity:.5;will-change:transform}
+
+.hero-inner{position:relative;z-index:2;max-width:1100px;margin:0 auto;width:100%}
+.hero .kicker{
+  display:inline-flex;align-items:center;gap:10px;font-family:var(--display);
+  font-style:italic;font-size:1.15rem;color:var(--gold-glow);
+  letter-spacing:.12em;margin-bottom:22px;
+}
+.hero .kicker .dot{width:7px;height:7px;border-radius:50%;background:var(--gold-glow);box-shadow:0 0 14px var(--gold-glow)}
+.hero h1{
+  font-family:var(--serif);font-weight:900;
+  font-size:clamp(2.7rem,8vw,6.4rem);line-height:1.02;letter-spacing:-.01em;
+}
+.hero h1 .accent{color:var(--gold-glow)}
+.hero h1 .stroke{
+  -webkit-text-stroke:1.4px var(--gold-glow);color:transparent;
+}
+.hero .sub{
+  margin-top:26px;max-width:620px;font-size:clamp(1rem,1.6vw,1.18rem);
+  color:rgba(246,241,231,.82);font-weight:300;
+}
+.hero .meta-row{display:flex;flex-wrap:wrap;gap:14px;margin-top:34px}
+.chip{
+  display:inline-flex;align-items:center;gap:8px;padding:9px 16px;
+  border:1px solid rgba(246,241,231,.28);border-radius:100px;
+  font-size:.82rem;color:rgba(246,241,231,.9);background:rgba(255,255,255,.04);
+  backdrop-filter:blur(6px);
+}
+.chip b{color:var(--gold-glow);font-weight:600}
+
+.hero-stats{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:54px;
+  max-width:760px;border-top:1px solid rgba(246,241,231,.18);padding-top:30px;
+}
+.stat .num{font-family:var(--display);font-size:clamp(2rem,4vw,3rem);font-weight:600;color:#fff;line-height:1}
+.stat .num small{font-size:1rem;color:var(--gold-glow);margin-left:4px;font-family:var(--sans);font-weight:400}
+.stat .lbl{font-size:.78rem;color:rgba(246,241,231,.62);margin-top:6px;letter-spacing:.08em}
+
+.scroll-cue{
+  position:absolute;bottom:26px;left:50%;transform:translateX(-50%);
+  display:flex;flex-direction:column;align-items:center;gap:8px;z-index:3;
+  color:rgba(246,241,231,.7);font-size:.72rem;letter-spacing:.2em;
+}
+.scroll-cue .mouse{width:22px;height:36px;border:1.5px solid rgba(246,241,231,.5);border-radius:12px;position:relative}
+.scroll-cue .mouse::after{content:"";position:absolute;left:50%;top:7px;transform:translateX(-50%);width:3px;height:7px;border-radius:2px;background:var(--gold-glow);animation:wheel 1.6s infinite}
+@keyframes wheel{0%{opacity:0;transform:translate(-50%,0)}30%{opacity:1}100%{opacity:0;transform:translate(-50%,12px)}}
+
+/* ============================================================
+   通用区块
+   ============================================================ */
+section{position:relative;z-index:2}
+.wrap{max-width:1240px;margin:0 auto;padding:clamp(60px,9vw,120px) clamp(20px,5vw,48px)}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:10px;font-family:var(--display);
+  font-style:italic;font-size:1.05rem;color:var(--terra);
+  letter-spacing:.1em;margin-bottom:14px;
+}
+.eyebrow::before{content:"";width:34px;height:1px;background:var(--terra)}
+.h2{font-family:var(--serif);font-weight:700;font-size:clamp(1.9rem,4vw,3rem);line-height:1.12;letter-spacing:-.005em}
+.h2 .ja{color:var(--jade)}
+.lede{margin-top:18px;max-width:680px;color:var(--ink-soft);font-size:1.02rem}
+.section-head{max-width:780px;margin-bottom:48px}
+
+/* ============================================================
+   行程总览 + 城市线
+   ============================================================ */
+.route-line{
+  display:flex;align-items:center;flex-wrap:wrap;gap:10px;
+  font-family:var(--serif);font-size:clamp(.95rem,2vw,1.3rem);margin-top:8px;
+}
+.route-line .city{
+  padding:8px 18px;border-radius:100px;background:#fff;border:1px solid var(--line);
+  box-shadow:var(--shadow-1);font-weight:600;
+}
+.route-line .city.start{background:var(--jade);color:#fff;border-color:var(--jade)}
+.route-line .arrow{color:var(--gold);font-family:var(--display);font-size:1.4rem}
+
+.overview-grid{
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:18px;
+}
+.ov-card{
+  background:#fff;border:1px solid var(--line);border-radius:var(--r-lg);
+  padding:22px;box-shadow:var(--shadow-1);position:relative;overflow:hidden;
+  cursor:pointer;transition:transform .5s cubic-bezier(.2,.8,.2,1), box-shadow .5s ease;
+}
+.ov-card::before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px;background:var(--accent,var(--jade));transform:scaleY(.2);transform-origin:top;transition:transform .5s cubic-bezier(.2,.8,.2,1)}
+.ov-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-2)}
+.ov-card:hover::before{transform:scaleY(1)}
+.ov-card .day-no{font-family:var(--display);font-size:2.4rem;font-weight:600;color:var(--accent,var(--jade));line-height:1}
+.ov-card .date{font-size:.78rem;color:var(--muted);letter-spacing:.06em;margin-top:2px}
+.ov-card .theme{font-family:var(--serif);font-weight:600;font-size:1.12rem;margin-top:14px;line-height:1.35}
+.ov-card .hotel{font-size:.85rem;color:var(--ink-soft);margin-top:10px;display:flex;gap:6px;align-items:flex-start}
+.ov-card .hotel svg{flex-shrink:0;margin-top:3px;color:var(--terra)}
+.ov-card .steps{margin-top:14px;display:flex;align-items:center;gap:8px;font-size:.82rem;color:var(--muted)}
+.steps-bar{flex:1;height:6px;background:var(--paper-3);border-radius:6px;overflow:hidden}
+.steps-bar i{display:block;height:100%;background:linear-gradient(90deg,var(--jade-glow),var(--gold));border-radius:6px}
+
+/* ============================================================
+   每日详细 — sticky 日期导航 + 可展开卡片
+   ============================================================ */
+.itin-wrap{display:grid;grid-template-columns:1fr;gap:30px}
+@media(min-width:980px){
+  .itin-wrap{grid-template-columns:220px 1fr;gap:48px}
+}
+.day-nav{
+  position:relative;display:flex;gap:10px;overflow-x:auto;padding:6px 2px;
+  scrollbar-width:none;
+}
+.day-nav::-webkit-scrollbar{display:none}
+@media(min-width:980px){
+  .day-nav{flex-direction:column;overflow:visible}
+  .day-nav.sticky{position:sticky;top:90px}
+}
+.day-nav .nav-title{font-family:var(--display);font-style:italic;color:var(--terra);font-size:1rem;margin-bottom:6px;white-space:nowrap}
+@media(min-width:980px){.day-nav .nav-title{display:block}}
+.day-link{
+  flex-shrink:0;display:flex;flex-direction:column;gap:2px;
+  padding:10px 16px;border-radius:var(--r-md);border:1px solid var(--line);
+  background:#fff;font-size:.82rem;color:var(--ink-soft);
+  transition:all .4s cubic-bezier(.2,.8,.2,1);cursor:pointer;min-width:96px;
+}
+.day-link .nd{font-family:var(--serif);font-weight:700;color:var(--ink);font-size:.92rem}
+.day-link.active{background:var(--ink);color:#fff;border-color:var(--ink);transform:translateX(4px)}
+.day-link.active .nd{color:var(--gold-glow)}
+@media(min-width:980px){.day-link.active{transform:translateX(8px)}}
+.day-link:hover{transform:translateY(-2px)}
+@media(min-width:980px){.day-link:hover{transform:translateX(4px)}}
+
+.day-card{
+  background:#fff;border:1px solid var(--line);border-radius:var(--r-xl);
+  box-shadow:var(--shadow-1);overflow:hidden;scroll-margin-top:90px;
+  transition:box-shadow .5s ease;
+}
+.day-card.highlight{box-shadow:var(--shadow-2), 0 0 0 2px var(--gold) inset}
+.dc-head{
+  padding:28px 30px;cursor:pointer;position:relative;
+  background:linear-gradient(135deg,#fbf7ee,#fff);
+}
+.dc-head .tag-row{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.dc-head .dnum{
+  font-family:var(--display);font-size:.95rem;letter-spacing:.18em;color:#fff;
+  background:var(--accent,var(--jade));padding:5px 12px;border-radius:100px;font-weight:600;
+}
+.dc-head .dtitle{font-family:var(--serif);font-weight:700;font-size:clamp(1.3rem,2.6vw,1.7rem);margin-top:12px;line-height:1.3}
+.dc-head .dsub{display:flex;flex-wrap:wrap;gap:18px;margin-top:12px;font-size:.85rem;color:var(--ink-soft)}
+.dc-head .dsub span{display:inline-flex;align-items:center;gap:6px}
+.dc-head .toggle{
+  position:absolute;right:28px;top:50%;transform:translateY(-50%);
+  width:40px;height:40px;border-radius:50%;border:1px solid var(--line);
+  display:grid;place-items:center;transition:transform .5s cubic-bezier(.2,.8,.2,1),background .3s;
+  background:#fff;
+}
+.dc-head .toggle svg{width:18px;height:18px;color:var(--ink)}
+.day-card.open .dc-head .toggle{transform:translateY(-50%) rotate(45deg);background:var(--accent,var(--jade))}
+.day-card.open .dc-head .toggle svg{color:#fff}
+@media(hover:hover){.dc-head:hover .toggle{background:var(--paper-2)}}
+
+.dc-body{max-height:0;overflow:hidden;transition:max-height .7s cubic-bezier(.2,.8,.2,1)}
+.day-card.open .dc-body{max-height:6000px}
+
+.dc-inner{padding:8px 30px 30px}
+.dc-theme-banner{
+  background:linear-gradient(120deg,var(--accent,var(--jade)),var(--accent-2,var(--jade-deep)));
+  color:#fff;border-radius:var(--r-md);padding:16px 20px;margin-bottom:22px;
+  display:flex;align-items:center;gap:14px;
+}
+.dc-theme-banner .ico{font-size:1.6rem}
+.dc-theme-banner .txt{font-family:var(--serif);font-size:1.02rem;font-weight:500}
+
+/* timeline */
+.tl{position:relative;padding-left:30px}
+.tl::before{content:"";position:absolute;left:9px;top:6px;bottom:6px;width:2px;background:linear-gradient(180deg,var(--accent,var(--jade)),var(--paper-3))}
+.tl-row{position:relative;padding:0 0 18px 6px}
+.tl-circle{
+  position:absolute;left:-26px;top:6px;width:18px;height:18px;border-radius:50%;
+  background:#fff;border:3px solid var(--accent,var(--jade));
+  box-shadow:0 0 0 4px rgba(255,255,255,.9);z-index:3;
+  cursor:pointer;
+  display:grid;place-items:center;
+  transition:all .3s ease;
+}
+.tl-circle svg{
+  width:10px;height:10px;color:#fff;opacity:0;transform:scale(.4);transition:all .3s ease;
+}
+.tl-row.done .tl-circle{
+  background:var(--accent,var(--jade));
+  border-color:var(--accent,var(--jade));
+}
+.tl-row.done .tl-circle svg{
+  opacity:1;transform:scale(1);
+}
+.tl-row.done .tl-title, .tl-row.done .tl-time{
+  color:var(--muted);
+  text-decoration:line-through;
+  opacity:0.75;
+}
+.tl-row.done .tl-desc{
+  opacity:0.5;
+}
+.tl-time{
+  display:inline-block;font-family:var(--display);font-weight:600;font-size:.95rem;
+  color:var(--accent,var(--jade));letter-spacing:.04em;margin-bottom:4px;
+}
+.tl-title{font-family:var(--serif);font-weight:600;font-size:1.02rem;margin-bottom:4px}
+.tl-desc{font-size:.9rem;color:var(--ink-soft)}
+.tl-desc .bullet{display:flex;gap:8px;margin-top:3px;align-items:flex-start}
+.tl-desc .bullet::before{content:"·";color:var(--gold);font-weight:700;margin-top:-2px}
+
+.dc-alt{
+  margin-top:18px;background:var(--paper-2);border-radius:var(--r-md);
+  padding:14px 18px;font-size:.86rem;color:var(--ink-soft);
+  border-left:3px solid var(--gold);
+}
+.dc-alt b{color:var(--terra)}
+.dc-safety{
+  margin-top:14px;background:#fbeceb;border-radius:var(--r-md);
+  padding:14px 18px;font-size:.86rem;color:#7a2424;
+  border-left:3px solid var(--danger);display:flex;gap:10px;
+}
+
+/* ============================================================
+   专项板块 — 通用卡片
+   ============================================================ */
+.cards-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:20px}
+.feature-card{
+  background:#fff;border:1px solid var(--line);border-radius:var(--r-lg);
+  padding:26px;box-shadow:var(--shadow-1);position:relative;overflow:hidden;
+  transition:transform .5s cubic-bezier(.2,.8,.2,1), box-shadow .5s ease;
+}
+@media(hover:hover){.feature-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-2)}}
+.feature-card .fnum{position:absolute;right:-6px;top:-10px;font-family:var(--display);font-size:5rem;font-weight:600;color:var(--paper-3);line-height:1;z-index:0}
+.feature-card .ftitle{position:relative;font-family:var(--serif);font-weight:700;font-size:1.2rem;margin-bottom:6px}
+.feature-card .fdesc{position:relative;font-size:.9rem;color:var(--ink-soft)}
+.feature-card .ficon{
+  width:44px;height:44px;border-radius:12px;display:grid;place-items:center;
+  background:linear-gradient(135deg,var(--accent,var(--jade)),var(--accent-2,var(--jade-deep)));
+  color:#fff;font-size:1.3rem;margin-bottom:14px;box-shadow:var(--shadow-1);position:relative;z-index:1;
+}
+.feature-card .flist{position:relative;margin-top:14px;display:flex;flex-direction:column;gap:8px;font-size:.86rem}
+.feature-card .flist li{list-style:none;display:flex;gap:8px;color:var(--ink-soft)}
+.feature-card .flist li::before{content:"✓";color:var(--jade);font-weight:700;flex-shrink:0}
+
+/* 物品清单 — 交互式 */
+.packing-tabs{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:24px}
+.ptab{
+  padding:9px 18px;border-radius:100px;border:1px solid var(--line);background:#fff;
+  font-size:.85rem;color:var(--ink-soft);cursor:pointer;
+  transition:all .4s cubic-bezier(.2,.8,.2,1);
+}
+.ptab.active{background:var(--ink);color:#fff;border-color:var(--ink)}
+@media(hover:hover){.ptab:hover{transform:translateY(-2px)}}
+
+.packing-panel{display:none;animation:fadeUp .5s ease both}
+.packing-panel.active{display:block}
+.check-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:10px}
+.check-item{
+  display:flex;align-items:center;gap:12px;padding:14px 16px;
+  background:#fff;border:1px solid var(--line);border-radius:var(--r-md);
+  cursor:pointer;transition:all .4s cubic-bezier(.2,.8,.2,1);user-select:none;
+}
+@media(hover:hover){.check-item:hover{border-color:var(--gold);transform:translateX(3px)}}
+.check-item .box{
+  width:22px;height:22px;border-radius:6px;border:2px solid var(--line);
+  display:grid;place-items:center;flex-shrink:0;transition:all .4s cubic-bezier(.2,.8,.2,1);
+}
+.check-item .box svg{width:14px;height:14px;color:#fff;opacity:0;transform:scale(.4);transition:all .4s cubic-bezier(.34,1.56,.64,1)}
+.check-item .lbl{font-size:.9rem}
+.check-item .lbl small{display:block;color:var(--muted);font-size:.78rem;margin-top:1px}
+.check-item.done{background:linear-gradient(120deg,#f0f7f3,#fff);border-color:var(--jade-glow)}
+.check-item.done .box{background:var(--jade);border-color:var(--jade)}
+.check-item.done .box svg{opacity:1;transform:scale(1)}
+.check-item.done .lbl{color:var(--muted);text-decoration:line-through;text-decoration-color:var(--jade-glow)}
+
+.pack-progress{margin-top:22px;background:#fff;border:1px solid var(--line);border-radius:var(--r-md);padding:18px 22px}
+.pack-progress .top{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;font-size:.88rem}
+.pack-progress .top b{font-family:var(--display);font-size:1.4rem;color:var(--jade)}
+
+/* 景区优待表 */
+.policy-table-wrap{overflow-x:auto;border-radius:var(--r-lg);border:1px solid var(--line);box-shadow:var(--shadow-1);background:#fff}
+.policy-table{width:100%;border-collapse:collapse;min-width:760px;font-size:.88rem}
+.policy-table thead th{
+  background:var(--ink);color:#f6f1e7;padding:16px;text-align:left;font-weight:500;
+  font-family:var(--serif);position:sticky;top:0;letter-spacing:.02em;
+}
+.policy-table tbody td{padding:14px 16px;border-bottom:1px solid var(--line);vertical-align:top}
+.policy-table tbody tr{transition:background .3s}
+.policy-table tbody tr:hover{background:var(--paper-2)}
+.policy-table tbody tr:last-child td{border-bottom:none}
+.tag{display:inline-block;padding:3px 10px;border-radius:100px;font-size:.76rem;font-weight:600}
+.tag.free{background:#e3f1ec;color:var(--jade-deep)}
+.tag.paid{background:#fbe9da;color:var(--terra)}
+.tag.check{background:#f3eedc;color:var(--gold)}
+.scenic-name{font-family:var(--serif);font-weight:600}
+
+/* 交通班次 */
+.transport-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:20px;align-items:start}
+.tran-card{
+  background:#fff;border:1px solid var(--line);border-radius:var(--r-lg);
+  padding:24px;box-shadow:var(--shadow-1);position:relative;overflow:hidden;
+}
+.tran-card .route-head{display:flex;align-items:center;gap:10px;margin-bottom:16px}
+.tran-card .fromto{font-family:var(--serif);font-weight:700;font-size:1.15rem;display:flex;align-items:center;gap:8px}
+.tran-card .fromto .arr{color:var(--gold)}
+.tran-card .trtag{margin-left:auto;font-size:.72rem;color:var(--muted);background:var(--paper-2);padding:4px 10px;border-radius:100px}
+.tran-list{display:flex;flex-direction:column;gap:10px}
+.tran-row{display:flex;align-items:baseline;gap:12px;padding:12px 14px;background:var(--paper);border-radius:var(--r-md);font-size:.85rem;flex-wrap:wrap}
+.tran-row .t{font-family:var(--serif);font-weight:600;color:var(--jade);min-width:120px;flex:0 0 120px}
+.tran-row .d{color:var(--ink-soft);flex:1 1 160px;min-width:0}
+.tran-row .p{font-weight:600;color:var(--terra);flex:0 0 auto;margin-left:auto;text-align:right}
+.tran-note{margin-top:14px;font-size:.82rem;color:var(--ink-soft);background:var(--paper-2);border-radius:var(--r-md);padding:12px 14px;border-left:3px solid var(--gold)}
+.tran-note b{color:var(--terra)}
+
+/* 美食 */
+.food-head{display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:24px}
+.food-head h3{font-family:var(--serif);font-weight:700;font-size:1.5rem}
+.food-head .count{font-family:var(--display);font-style:italic;color:var(--terra);font-size:1.05rem}
+.food-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:18px}
+.food-card{
+  background:#fff;border:1px solid var(--line);border-radius:var(--r-lg);
+  box-shadow:var(--shadow-1);position:relative;overflow:hidden;
+  transition:transform .5s cubic-bezier(.2,.8,.2,1), box-shadow .5s ease;
+  display:flex;flex-direction:column;
+}
+@media(hover:hover){.food-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-2)}}
+.food-card .ftop{
+  background:linear-gradient(135deg,var(--accent,var(--jade)),var(--accent-2,var(--jade-deep)));
+  color:#fff;padding:16px 20px;display:flex;align-items:center;justify-content:space-between;
+}
+.food-card .emoji{font-size:2rem;line-height:1}
+.food-card .region{font-size:.72rem;letter-spacing:.08em;background:rgba(255,255,255,.22);padding:4px 11px;border-radius:100px;backdrop-filter:blur(4px)}
+.food-card .fbody{padding:18px 20px;flex:1;display:flex;flex-direction:column}
+.food-card .fname{font-family:var(--serif);font-weight:700;font-size:1.15rem}
+.food-card .fdesc{font-size:.85rem;color:var(--ink-soft);margin-top:6px;line-height:1.6}
+.food-card .ftags{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.food-card .ftag{font-size:.72rem;padding:3px 10px;border-radius:100px;background:var(--paper-2);color:var(--ink-soft);border:1px solid var(--line)}
+.food-card .frating{display:flex;align-items:center;gap:8px;margin-top:14px;padding-top:12px;border-top:1px dashed var(--line);font-size:.76rem;color:var(--muted)}
+.food-card .stars{color:var(--gold);letter-spacing:2px;font-size:.9rem}
+.food-card .fplace{margin-top:12px;font-size:.8rem;color:var(--terra);font-weight:500;display:flex;align-items:center;gap:5px}
+
+.rest-table{margin-top:34px;overflow-x:auto;border-radius:var(--r-lg);border:1px solid var(--line);background:#fff}
+.rest-table table{width:100%;border-collapse:collapse;min-width:560px;font-size:.88rem}
+.rest-table th{background:var(--terra);color:#fff;padding:14px;text-align:left;font-family:var(--serif);font-weight:500}
+.rest-table td{padding:13px 14px;border-bottom:1px solid var(--line)}
+.rest-table tr:last-child td{border-bottom:none}
+
+/* 菌子安全 — 戏剧化 */
+.mushroom-hero{
+  background:linear-gradient(150deg,#1a1410,#2a1a14);
+  color:#f6f1e7;border-radius:var(--r-xl);padding:clamp(30px,5vw,56px);
+  position:relative;overflow:hidden;box-shadow:var(--shadow-3);
+}
+.mushroom-hero::before{
+  content:"🍄";position:absolute;right:-30px;bottom:-40px;font-size:14rem;opacity:.08;
+}
+.mh-kicker{display:inline-flex;align-items:center;gap:10px;color:var(--terra-soft);font-family:var(--display);font-style:italic;letter-spacing:.12em;font-size:1.05rem}
+.warn-pulse{display:inline-flex;align-items:center;gap:8px;color:#ff6b5e;font-weight:600}
+.warn-pulse .pulse{width:10px;height:10px;border-radius:50%;background:#ff6b5e;animation:pulse 1.6s infinite;box-shadow:0 0 0 rgba(255,107,94,.6)}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(255,107,94,.6)}70%{box-shadow:0 0 0 14px rgba(255,107,94,0)}100%{box-shadow:0 0 0 0 rgba(255,107,94,0)}}
+.mushroom-hero h3{font-family:var(--serif);font-weight:700;font-size:clamp(1.6rem,3.5vw,2.4rem);margin-top:14px;line-height:1.3}
+.mushroom-hero h3 em{color:#ff6b5e;font-style:normal}
+
+.principle-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px;margin-top:30px}
+.principle{
+  background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:var(--r-md);
+  padding:18px;backdrop-filter:blur(6px);transition:all .4s cubic-bezier(.2,.8,.2,1);
+}
+@media(hover:hover){.principle:hover{background:rgba(255,107,94,.12);border-color:rgba(255,107,94,.4);transform:translateY(-4px)}}
+.principle .pn{font-family:var(--display);font-size:1.6rem;color:var(--terra-soft);font-weight:600}
+.principle .pt{font-family:var(--serif);font-weight:600;font-size:1rem;margin:6px 0}
+.principle .pd{font-size:.82rem;color:rgba(246,241,231,.7);line-height:1.6}
+
+.danger-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px;margin-top:18px}
+.danger{background:rgba(168,50,50,.12);border:1px solid rgba(255,107,94,.25);border-radius:var(--r-md);padding:16px}
+.danger .dn{font-family:var(--serif);font-weight:700;color:#ff8a7e;font-size:1.02rem;display:flex;align-items:center;gap:8px}
+.danger .dd{font-size:.82rem;color:rgba(246,241,231,.75);margin-top:4px}
+
+.emergency{
+  margin-top:26px;background:rgba(255,107,94,.1);border:1px dashed rgba(255,107,94,.4);
+  border-radius:var(--r-md);padding:20px 24px;
+}
+.emergency .et{font-family:var(--serif);font-weight:700;color:#ff8a7e;font-size:1.1rem;margin-bottom:10px}
+.emergency ol{padding-left:20px;font-size:.88rem;color:rgba(246,241,231,.85);display:flex;flex-direction:column;gap:5px}
+
+/* footer */
+footer{
+  background:var(--ink);color:rgba(246,241,231,.7);text-align:center;
+  padding:60px 24px 50px;font-size:.86rem;
+}
+footer .fseal{font-family:var(--serif);font-size:1.6rem;color:var(--gold-glow);margin-bottom:10px;display:block}
+footer .fline{max-width:560px;margin:14px auto 0;color:rgba(246,241,231,.5);font-size:.8rem;line-height:1.8}
+
+/* reveal */
+.reveal{opacity:0;transform:translateY(40px)}
+.reveal-up{opacity:0;transform:translateY(28px)}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+
+@media(max-width:980px){
+  .hero-stats{grid-template-columns:repeat(2,1fr);gap:22px}
+  .scroll-cue{display:none}
+}
+@media(prefers-reduced-motion:reduce){
+  *{animation-duration:.001s!important;transition-duration:.001s!important}
+  .reveal,.reveal-up{opacity:1!important;transform:none!important}
+}
+</style>
+</head>
+<body>
+
+<div id="progress"></div>
+
+<!-- ============ TOP NAV ============ -->
+<header class="topnav" id="topnav">
+  <div class="brand"><span class="seal">滇</span><span>滇南慢游图鉴</span></div>
+  <nav>
+    <a href="#overview">总览</a>
+    <a href="#itinerary">每日行程</a>
+    <a href="#elder">适老指南</a>
+    <a href="#policy">优待政策</a>
+    <a href="#transport">交通班次</a>
+    <a href="#food">美食菌子</a>
+  </nav>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="hero">
+  <div class="sky">
+    <div class="sun" data-parallax="0.25"></div>
+    <svg class="mountain" viewBox="0 0 1440 400" preserveAspectRatio="none">
+      <defs>
+        <linearGradient id="mg1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0e2620"/><stop offset="1" stop-color="#155444"/></linearGradient>
+        <linearGradient id="mg2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1f6f5c"/><stop offset="1" stop-color="#3d9c83"/></linearGradient>
+      </defs>
+      <path data-parallax="0.12" d="M0,400 L0,250 L120,210 L260,260 L380,180 L520,240 L640,160 L800,230 L940,170 L1080,240 L1220,190 L1340,250 L1440,210 L1440,400 Z" fill="url(#mg1)"/>
+      <path data-parallax="0.22" d="M0,400 L0,310 L140,280 L300,320 L460,270 L620,310 L780,260 L940,300 L1100,270 L1260,310 L1440,280 L1440,400 Z" fill="url(#mg2)"/>
+    </svg>
+    <div class="lake-shimmer"></div>
+  </div>
+
+  <div class="hero-inner">
+    <span class="kicker"><span class="dot"></span> YUNNAN · SLOW JOURNEY · 2026</span>
+    <h1>
+      <span class="line">昆明 · 抚仙湖</span><br/>
+      <span class="line"><span class="stroke">建水 · 弥勒</span></span><br/>
+      <span class="line accent">慢游九日</span>
+    </h1>
+    <p class="sub">一老一少的滇南慢节奏深度游 — 单日步数控制在 8000–10000 步，避开正午暴晒，按时吃正餐，用观光车、电瓶车、游船与点到点打车温柔地丈量这片土地。</p>
+
+    <div class="meta-row">
+      <span class="chip">🧳 <b>2人</b> · 25岁青年 + 70岁老人</span>
+      <span class="chip">📅 <b>7.13–7.21</b> · 8晚9天</span>
+      <span class="chip">🌤️ 雨季 · 防晒防滑</span>
+      <span class="chip">🚶 慢节奏 · 不走回头路</span>
+    </div>
+
+    <div class="hero-stats">
+      <div class="stat"><div class="num" data-count="9">0</div><div class="lbl">DAYS · 天</div></div>
+      <div class="stat"><div class="num" data-count="4">0</div><div class="lbl">CITIES · 城市</div></div>
+      <div class="stat"><div class="num" data-count="14">0</div><div class="lbl">SCENIC · 景区</div></div>
+      <div class="stat"><div class="num" data-count="8">0</div><div class="lbl">STAYS · 住宿晚</div></div>
+    </div>
+  </div>
+
+  <div class="scroll-cue"><div class="mouse"></div>SCROLL</div>
+</section>
+
+<!-- ============ OVERVIEW ============ -->
+<section id="overview">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Itinerary at a glance</span>
+      <h2 class="h2">行程<span class="ja">总览</span></h2>
+      <p class="lede">全程昆明 → 抚仙湖 → 建水 → 弥勒 → 昆明，一条不走回头路的环线。每日主题清晰，疲劳日步数可低于 8000 步。</p>
+      <div class="route-line">
+        <span class="city start">昆明</span><span class="arrow">→</span>
+        <span class="city">抚仙湖</span><span class="arrow">→</span>
+        <span class="city">建水</span><span class="arrow">→</span>
+        <span class="city">弥勒</span><span class="arrow">→</span>
+        <span class="city start">昆明</span>
+      </div>
+    </div>
+
+    <div class="overview-grid" id="ovGrid"><!-- generated --></div>
+  </div>
+</section>
+
+<!-- ============ ITINERARY ============ -->
+<section id="itinerary" style="background:linear-gradient(180deg,var(--paper),var(--paper-2))">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Day by day</span>
+      <h2 class="h2">每日<span class="ja">详细行程</span></h2>
+      <p class="lede">点击任意一天展开完整时间线。左侧日期导航会跟随你的阅读位置高亮 — 试着滚动看看。</p>
+    </div>
+
+    <div class="itin-wrap">
+      <aside class="day-nav" id="dayNav">
+        <div class="nav-title">9 Days Index</div>
+        <!-- links generated -->
+      </aside>
+      <div class="day-list" id="dayList"><!-- day cards generated --></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ELDER / 雨季出行 ============ -->
+<section id="elder">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">For elders · rainy season</span>
+      <h2 class="h2">老人暑期<span class="ja">出行专属指南</span></h2>
+      <p class="lede">云南紫外线是平原 2–3 倍，7–8 月雨季"一天有四季"。七大注意事项 + 分类物品清单，逐项打勾准备。</p>
+    </div>
+
+    <div class="cards-grid" id="tipsGrid"><!-- generated --></div>
+  </div>
+</section>
+
+<!-- ============ PACKING ============ -->
+<section style="background:var(--paper-2)">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Packing list</span>
+      <h2 class="h2">出行<span class="ja">物品清单</span></h2>
+      <p class="lede">点击物品卡片即可打勾记录 — 进度条会实时更新你的准备情况。</p>
+    </div>
+
+    <div class="packing-tabs" id="packTabs"></div>
+    <div id="packPanels"></div>
+
+    <div class="pack-progress">
+      <div class="top"><span>已勾选 / 全部物品</span><b><span id="doneCount">0</span> / <span id="totalCount">0</span></b></div>
+      <div class="steps-bar"><i id="packBar" style="width:0%"></i></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ POLICY ============ -->
+<section id="policy">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Senior discounts & access</span>
+      <h2 class="h2">景区<span class="ja">优待与代步设施</span></h2>
+      <p class="lede">70 岁以上凭身份证可享多景区免票 / 半价。所有优待均需身份证原件，部分政策以现场为准。</p>
+    </div>
+    <div class="policy-table-wrap reveal-up">
+      <table class="policy-table">
+        <thead><tr><th>景区名称</th><th>门票</th><th>70岁以上优待</th><th>代步设施</th><th>开放时间</th></tr></thead>
+        <tbody id="policyBody"></tbody>
+      </table>
+    </div>
+    <p style="margin-top:18px;font-size:.86rem;color:var(--muted)">⚠️ 重要提醒：所有景区老人优待政策均需凭本人身份证原件享受，请务必随身携带！部分景区政策可能调整，建议出行前再次确认。</p>
+  </div>
+</section>
+
+<!-- ============ TRANSPORT ============ -->
+<section id="transport" style="background:var(--paper-2)">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Inter-city transfers</span>
+      <h2 class="h2">城际<span class="ja">交通班次</span></h2>
+      <p class="lede">荣县↔天府、机场↔市区、高铁、景区直通车、旅游大巴 — 推荐班次与购票渠道一览。</p>
+    </div>
+    <div class="transport-grid" id="tranGrid"></div>
+  </div>
+</section>
+
+<!-- ============ FOOD ============ -->
+<section id="food">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Taste of Yunnan</span>
+      <h2 class="h2">美食推荐与<span class="ja">菌子季安全</span></h2>
+      <p class="lede">7 月时令云南味 — 过桥米线、铜锅鱼、汽锅鸡、建水豆腐、弥勒卤鸡，再到菌子季的八大安全铁律。</p>
+    </div>
+
+    <div class="food-head">
+      <h3>必吃美食清单</h3>
+      <span class="count">8 dishes · 舌尖上的滇南</span>
+    </div>
+    <div class="food-grid" id="foodGrid"></div>
+
+    <div class="rest-table reveal-up">
+      <table>
+        <thead><tr><th>城市</th><th>餐厅名称</th><th>推荐菜品</th></tr></thead>
+        <tbody>
+          <tr><td>昆明</td><td>建新园 / 桥香园</td><td>过桥米线（老字号，口味正宗）</td></tr>
+          <tr><td>昆明</td><td>菌子王 / 一朵菌</td><td>野生菌火锅（正规店铺，安全放心）</td></tr>
+          <tr><td>抚仙湖</td><td>禄充村渔家餐厅</td><td>铜锅鱼、洋芋焖饭</td></tr>
+          <tr><td>建水</td><td>临安饭店</td><td>汽锅鸡、草芽米线、烧豆腐</td></tr>
+          <tr><td>建水</td><td>西门豆腐坊</td><td>西门大板井豆腐</td></tr>
+          <tr><td>弥勒</td><td>卤鸡米线店</td><td>弥勒卤鸡、卤鸡米线</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MUSHROOM SAFETY ============ -->
+<section style="background:var(--paper)">
+  <div class="wrap">
+    <div class="mushroom-hero reveal">
+      <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px">
+        <span class="mh-kicker">🍄 Mushroom season · safety first</span>
+        <span class="warn-pulse"><span class="pulse"></span>高致死风险 · 严格遵守</span>
+      </div>
+      <h3>野生菌中毒死亡率高，<em>切勿抱有侥幸心理</em></h3>
+      <p style="margin-top:14px;max-width:680px;color:rgba(246,241,231,.78);font-size:.92rem">7–9 月是云南菌子季，鲜美无比也暗藏风险。下方八大安全原则、常见夺命菌与应急处理，请同行者共同牢记。</p>
+
+      <h4 style="font-family:var(--serif);color:var(--gold-glow);margin:30px 0 4px;font-size:1.15rem">八大安全原则</h4>
+      <div class="principle-grid" id="principleGrid"></div>
+
+      <h4 style="font-family:var(--serif);color:#ff8a7e;margin:34px 0 4px;font-size:1.15rem">⚠️ 常见夺命菌 · 务必远离</h4>
+      <div class="danger-grid" id="dangerGrid"></div>
+
+      <div class="emergency">
+        <div class="et">🚨 中毒症状与应急处理</div>
+        <p style="font-size:.86rem;color:rgba(246,241,231,.8);margin-bottom:10px"><b style="color:#ffb4a8">常见症状：</b>恶心、呕吐、腹痛、腹泻、头晕、幻觉、肝肾损伤等<br/><b style="color:#ffb4a8">潜伏期：</b>快则 10 分钟–2 小时，慢则 6–24 小时甚至更长</p>
+        <ol>
+          <li>立即催吐，尽量排出胃内容物</li>
+          <li>立即拨打 <b style="color:#ff8a7e">120</b> 急救电话，前往最近的医院</li>
+          <li>带上剩余的菌子或照片，帮助医生判断菌种</li>
+          <li>保留呕吐物样本，便于检测</li>
+        </ol>
+      </div>
+      <p style="margin-top:18px;font-size:.84rem;color:rgba(246,241,231,.6)">💡 温馨提示：选择正规餐厅能显著降低风险，但仍必须严格遵守"煮熟煮透、不混吃、不喝酒"三原则；老人建议少量尝鲜，不要把野生菌当作主食大量食用。建议选择人气旺、口碑好的连锁菌火锅店。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <span class="fseal">滇</span>
+  <div>滇南慢游图鉴 · 一老一少 8晚9天</div>
+  <div class="fline">本页基于详细行程文档生成，仅供出行参考。班次、票价、优待政策以官方实时信息为准，出行前请再次复核。祝旅途平安，慢享滇南。</div>
+</footer>
+
+<!-- GSAP -->
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+
+<script>
+/* ============================================================
+   数据层 / Content
+   ============================================================ */
+const COLORS = {
+  kunming:['#1f6f5c','#155444'], fuxian:['#2d7ea8','#1c5a7a'], jianshui:['#b5532a','#8f3d1d'], mile:['#bf8b2e','#946821']
+};
+
+const OVERVIEW = [
+  {d:'Day 1',date:'7.13 周一',city:'昆明',theme:'初抵春城 · 翠湖漫步',hotel:'全季昆明龙湖时代金融中心',steps:5000,acc:COLORS.kunming},
+  {d:'Day 2',date:'7.14 周二',city:'昆明→抚仙湖',theme:'滇池观湖 · 花市漫游 · 转场',hotel:'宜尚酒店抚仙湖化石地店',steps:6500,acc:COLORS.fuxian},
+  {d:'Day 3',date:'7.15 周三',city:'抚仙湖',theme:'禄充深度 · 湖光山色',hotel:'宜尚酒店抚仙湖化石地店',steps:8000,acc:COLORS.fuxian},
+  {d:'Day 4',date:'7.16 周四',city:'抚仙湖→建水',theme:'湖畔休闲 · 古城初遇',hotel:'建水古城朝阳楼漫心',steps:5500,acc:COLORS.jianshui},
+  {d:'Day 5',date:'7.17 周五',city:'建水',theme:'米轨慢游 · 古城寻韵',hotel:'建水古城朝阳楼漫心',steps:8500,acc:COLORS.jianshui},
+  {d:'Day 6',date:'7.18 周六',city:'建水→弥勒',theme:'燕洞奇观 · 陶庄探秘 · 转场',hotel:'汉庭红河州弥勒酒店',steps:7000,acc:COLORS.mile},
+  {d:'Day 7',date:'7.19 周日',city:'弥勒',theme:'东风艺术 · 温泉疗愈',hotel:'汉庭红河州弥勒酒店',steps:7500,acc:COLORS.mile},
+  {d:'Day 8',date:'7.20 周一',city:'弥勒→昆明',theme:'生态休闲 · 返程昆明',hotel:'昆明长水机场美居酒店',steps:5000,acc:COLORS.kunming},
+  {d:'Day 9',date:'7.21 周二',city:'返程',theme:'送机返程',hotel:'—',steps:3000,acc:['#857c6b','#5e574b']},
+];
+
+const DAYS = [
+{
+  d:'Day 1', date:'7月13日（周一）', title:'初抵春城 · 翠湖漫步', acc:COLORS.kunming,
+  theme:'轻松抵达，适应高原气候，翠湖公园周边慢游',
+  hotel:'全季昆明龙湖时代金融中心酒店', steps:'约5000步', transit:'打车 + 步行', icon:'✈️',
+  rows:[
+    {t:'08:10–09:35', ti:'荣县→自贡站（约75–90分钟）', d:['建议提前预约网约车/定制车直达自贡站','把长汽车程拆短，更适合易晕车老人','步行距离：约500步']},
+    {t:'09:35–10:55', ti:'自贡站→成都天府机场站（推荐 G8538 10:26–10:55，约29分钟）', d:['购票渠道：12306','参考票价：二等座约51元/人','高铁接驳比全程汽车更稳，站内用直梯/扶梯，老人坐着候车']},
+    {t:'11:00–13:30', ti:'成都天府机场候机', d:['办理值机、安检，机场内午餐','建议选择清淡饮食，避免飞行中肠胃不适','步行距离：约1500步']},
+    {t:'14:05–15:30', ti:'8L9948航班 成都天府→昆明（飞行约1小时25分钟）', d:['靠窗座位可俯瞰云贵高原风光','建议老人靠过道就坐，方便起身活动']},
+    {t:'15:30–16:30', ti:'昆明长水机场→市区酒店（约45–60分钟）', d:['带老人和行李优先打车/网约车直达；地铁6号线可作为轻装备选','步行距离：约800–1000步']},
+    {t:'16:30–17:30', ti:'酒店办理入住，休整', d:['稍作休息，缓解旅途疲劳','补充水分，适应昆明海拔（约1900米）']},
+    {t:'17:30–19:30', ti:'翠湖公园慢游（约2小时）', d:['昆明城中心的"翡翠"，湖光潋滟、绿树成荫，全程平缓步道','路线：南门→湖心亭→观鱼楼→东门出，环湖半圈约1.5公里','门票：免费 · 公园服务站可免费借轮椅（押金200元）','步行距离：约2000步']},
+    {t:'19:30–20:30', ti:'晚餐：过桥米线', d:['推荐：建新园 / 桥香园（昆明老字号）','特色：鸡汤汤底，配料丰富，老人可选不辣口味']},
+    {t:'20:30后', ti:'返回酒店休息', d:['早休息，为第二天养精蓄锐']},
+  ],
+  alt:'若抵达较早且体力尚可，可增加<b>云南陆军讲武堂</b>（翠湖西侧，免费，室内凉爽，约1小时）'
+},
+{
+  d:'Day 2', date:'7月14日（周二）', title:'滇池观湖 · 花市漫游 · 转场抚仙湖', acc:COLORS.fuxian,
+  theme:'上午海埂大坝观滇池，下午斗南花市后转场抚仙湖',
+  hotel:'宜尚酒店(澄江抚仙湖风景区化石地博物馆店)', steps:'约6500步', transit:'打车 + 景区直通车 + 步行', icon:'🌊',
+  rows:[
+    {t:'07:30–08:30', ti:'酒店早餐', d:['清淡营养为主，为上午活动储备能量']},
+    {t:'09:00–11:00', ti:'海埂大坝 · 滇池风光（约2小时）', d:['2公里平坦坝道，远眺"睡美人"西山，湖风清爽视野开阔','从大坝北端慢行至中段，沿途有多处休息亭','门票：免费 · 全程平坦无障碍，可推轮椅；沿途有观光电瓶车（可选）','7月虽无红嘴鸥，但滇池风光依然壮美，注意防晒','步行距离：约2500步']},
+    {t:'11:00–12:00', ti:'前往斗南花市（约40分钟）', d:['交通方式：打车/网约车，约30公里']},
+    {t:'12:00–13:00', ti:'午餐：斗南花市周边', d:['推荐：云南特色小吃，如凉米线、豌豆粉等','避开正午暴晒，室内用餐休息']},
+    {t:'13:00–14:30', ti:'斗南花市漫游（约1.5小时）', d:['亚洲最大鲜切花交易市场，10元买3把鲜花，室内恒温防滑地面','路线：主场馆鲜切花区→多肉植物区→干花区','门票：免费 · 室内平路，电梯直达各层，多处休息区','步行距离：约2000步']},
+    {t:'14:30–15:00', ti:'前往昆明南站（约30分钟）', d:['打车/地铁，斗南花市距昆明南站很近']},
+    {t:'15:00–15:40', ti:'昆明南站→澄江化石地博物馆（景区直通车，约40分钟）', d:['购票渠道：「抚仙湖悠生活」小程序预订','参考票价：约50元/人','下车点直达酒店附近，非常方便']},
+    {t:'15:40–16:30', ti:'酒店办理入住，休整', d:['稍作休息，缓解乘车疲劳']},
+    {t:'16:30–18:00', ti:'澄江化石地博物馆（可选，约1.5小时）', d:['世界自然遗产，5.3亿年前寒武纪生命大爆发遗迹','门票：免费（需预约）· 室内展馆，电梯直达，全程平路','若体力不足可跳过，酒店周边散步即可','步行距离：约1500步']},
+    {t:'18:00–19:30', ti:'晚餐：抚仙湖铜锅鱼', d:['推荐：景区周边渔家餐厅，铜锅煮鱼+洋芋焖饭','特色：抚仙湖特产鱼，清汤锅底，鲜美不辣']},
+    {t:'19:30后', ti:'返回酒店休息', d:[]},
+  ],
+  alt:'若时间充裕，可增加<b>月亮湾湿地公园</b>（抚仙湖北岸，免费，白沙滩，约1小时）'
+},
+{
+  d:'Day 3', date:'7月15日（周三）', title:'禄充深度 · 湖光山色', acc:COLORS.fuxian,
+  theme:'抚仙湖禄充风景区全天深度游，体验人工手划船与抗浪鱼文化',
+  hotel:'宜尚酒店(澄江抚仙湖风景区化石地博物馆店)', steps:'约8000步', transit:'公交 + 步行 + 手划船', icon:'🛶',
+  rows:[
+    {t:'07:30–08:30', ti:'酒店早餐', d:['吃饱吃好，为全天活动储备能量']},
+    {t:'09:00–09:40', ti:'酒店→禄充风景区（约40分钟）', d:['澄江201路公交 / 打车','建议打车前往，节省体力，约30元']},
+    {t:'09:40–12:00', ti:'禄充风景区 · 上午游览（约2小时20分钟）', d:['抚仙湖西岸核心景区，背山面水，笔架山+波息湾+古渔村','路线：景区入口→波息湾沙滩→古渔村→车水捕鱼体验点','门票：15元/人（70岁以上老人凭身份证免票）','抗浪鱼文化：观看"车水捕鱼"传统捕捞方式（5–10月可见）','代步：湖边平路为主，多处休息亭，古榕树下乘凉','步行距离：约3000步']},
+    {t:'12:00–13:30', ti:'午餐：景区内铜锅鱼宴', d:['推荐：禄充村渔家餐厅，现捞铜锅鱼+抗浪鱼体验','避开正午暴晒，室内用餐休息','特色：抗浪鱼是抚仙湖特有鱼种，肉质鲜美']},
+    {t:'13:30–15:00', ti:'午休 / 茶室休息', d:['景区内湖边咖啡馆/茶室休息，避开正午高温','点一杯饮品，欣赏湖景，恢复体力']},
+    {t:'15:00–16:20', ti:'人工手划船 / 人工慢船体验（约60–80分钟）', d:['选择景区正规经营的人工手划船或人工慢船，感受"琉璃万顷"','船只选择：人工手划船优先；脚踏船仅作为老人省力备选','全程穿救生衣，不远离岸边，老人坐在船中间','步行距离：约500步']},
+    {t:'16:30–17:30', ti:'笔架山观景（可选，约1小时）', d:['平缓石阶登顶，约10分钟，360°俯瞰全湖','若体力不足可在山下湖边散步，不必勉强','步行距离：约1500步']},
+    {t:'17:30–18:30', ti:'湖边漫步 · 看日落', d:['沿波息湾沙滩慢走，等待日落','抚仙湖日落非常美，金光洒在湖面上','步行距离：约1500步']},
+    {t:'18:30–19:30', ti:'返回酒店', d:['打车返回酒店，约40分钟']},
+    {t:'19:30–20:30', ti:'晚餐', d:['酒店附近餐厅，清淡为主']},
+  ],
+  safety:'乘船全程必须穿救生衣；不乘坐快艇、摩托艇等刺激项目，也不乘坐无资质私人船；手划船/人工慢船必须选择景区正规经营点。',
+  alt:'若禄充人多，可改为<b>红沙滩</b>（抚仙湖南岸，免费，粉色沙滩，人少景美）'
+},
+{
+  d:'Day 4', date:'7月16日（周四）', title:'湖畔休闲 · 转场建水', acc:COLORS.jianshui,
+  theme:'上午抚仙湖休闲，下午经昆明南站转高铁前往建水',
+  hotel:'建水古城朝阳楼漫心酒店', steps:'约5500步', transit:'景区直通车 + 高铁 + 步行', icon:'🚄',
+  rows:[
+    {t:'07:30–08:30', ti:'酒店早餐', d:[]},
+    {t:'09:00–11:00', ti:'抚仙湖晨景漫步（约2小时）', d:['酒店附近湖边步道，清晨空气清新，人少景美','活动内容：湖边散步、拍照，感受抚仙湖清晨的宁静','若昨日未去化石地博物馆，可安排上午前往（免费，室内，约1.5小时）','步行距离：约2000步']},
+    {t:'11:00–12:00', ti:'收拾行李，退房', d:['整理行李，准备转场']},
+    {t:'12:00–13:00', ti:'午餐', d:['酒店附近餐厅，吃饱后出发']},
+    {t:'13:30–14:30', ti:'澄江化石地博物馆→昆明南站（景区直通车，约40–60分钟）', d:['购票渠道：「抚仙湖悠生活」小程序预订','参考票价：约45–50元/人','固定线路为澄江化石地博物馆→昆明南站，接后续高铁']},
+    {t:'14:30–17:15', ti:'昆明南站候车、休息', d:['站内休息，上厕所、补水、整理行李','当前可查昆明南上车去建水的下午合适车次偏晚，因此不硬赶不存在的15:30班次','步行距离：约1000步']},
+    {t:'17:15–18:00', ti:'昆明南站提前晚餐', d:['推荐：站内热汤米线/简餐/米饭套餐','这样避免20:22到建水后老人饿着再找餐厅']},
+    {t:'18:36–20:22', ti:'昆明南→建水 高铁（推荐 C559，车程1小时46分钟）', d:['购票渠道：12306','参考票价：二等座约51元/人','这是目前较适合"昆明南站上车"的下午直达班次；若临近出行新增15:00–17:30昆明南可上车班次，可优先替换']},
+    {t:'20:22–20:45', ti:'建水站→古城酒店（约10–20分钟）', d:['打车优先，直达酒店门口','步行距离：约300步']},
+    {t:'20:45–21:15', ti:'酒店办理入住，洗漱休息', d:['当晚不再安排古城夜游，把朝阳楼和古城慢走放到Day5傍晚','避免老人晚间疲劳和雨后石板路滑']},
+  ],
+  alt:'若12306临近出行新增更早昆明南→建水车次且抵达较早，可短看酒店附近朝阳楼夜景或紫陶街；若仍乘C559，则不加夜游'
+},
+{
+  d:'Day 5', date:'7月17日（周五）', title:'米轨慢游 · 古城寻韵', acc:COLORS.jianshui,
+  theme:'乘坐百年米轨小火车，深度游览建水古城',
+  hotel:'建水古城朝阳楼漫心酒店', steps:'约8500步', transit:'米轨小火车 + 步行', icon:'🚂',
+  rows:[
+    {t:'07:30–08:30', ti:'酒店早餐', d:[]},
+    {t:'08:30–09:00', ti:'前往临安站（步行约20分钟）', d:['从古城步行至临安站，沿途欣赏古城清晨风光','步行距离：约1500步']},
+    {t:'09:00–13:40', ti:'建水米轨小火车体验（全程约4小时40分钟）', d:['线路：临安站→双龙桥站→乡会桥站→团山站→返程','各站停留：双龙桥30分钟、乡会桥30分钟、团山站约2小时','百年寸轨黄金线，时速25公里的慢旅行，一站一景','双龙桥：十七孔桥，清乾隆年间建造，"滇南大观楼"','乡会桥站：法式黄墙建筑，复古文艺','团山古村：国家级历史文化名村，"滇南大观园"','票价：硬座常见约100元/人；老人优惠以"建水小火车"官方公众号/购票页现场核验为准','包含服务：矿泉水+建水狮子糕+全程讲解 · 团山古村可坐电瓶车','步行距离：约4000步']},
+    {t:'12:00–13:00', ti:'午餐：团山古村 / 火车上', d:['团山古村内农家菜，或自带简餐','小火车上也可享用点心']},
+    {t:'13:40–14:30', ti:'返回古城，午休', d:['步行回酒店，稍作休息，避开正午高温','步行距离：约1000步']},
+    {t:'14:30–17:30', ti:'建水古城深度游（约3小时）', d:['路线：朝阳楼→朱家花园→文庙→西门大板井','朝阳楼：建水地标，"小天安门"，可登楼俯瞰古城（门票约20元）','朱家花园："滇南大观园"，清代民居建筑，门票约50元（70岁以上免票）','文庙：全国第二大文庙，建筑宏伟，门票约40元（70岁以上免票）','西门大板井：600多年历史古井，"滇南第一井"，免费','古城内平路为主，可乘坐古城观光车（可选）','步行距离：约3000步']},
+    {t:'17:30–18:30', ti:'紫陶街闲逛（可选）', d:['建水紫陶文创街区，欣赏紫陶艺术品','步行距离：约1000步']},
+    {t:'18:30–20:00', ti:'晚餐：建水特色美食', d:['推荐：汽锅鸡、草芽米线、建水豆腐','推荐餐厅：临安饭店（老字号）']},
+    {t:'20:00后', ti:'古城夜景散步，返回酒店', d:['步行距离：约500步']},
+  ],
+  alt:'若小火车票售罄，可改为<b>蚁工坊</b>（彩色陶艺建筑，门票约20元，约1.5小时）或<b>学政考棚</b>（科举文化展馆，约1小时）'
+},
+{
+  d:'Day 6', date:'7月18日（周六）', title:'燕洞奇观 · 陶庄探秘 · 转场弥勒', acc:COLORS.mile,
+  theme:'上午燕子洞探奇，下午贝山陶庄后转场弥勒',
+  hotel:'汉庭红河州弥勒酒店', steps:'约7000步', transit:'专线车 + 旅游大巴 + 步行', icon:'🕳️',
+  rows:[
+    {t:'07:30–08:30', ti:'酒店早餐', d:['洞内温度较低，建议带一件薄外套']},
+    {t:'08:30–09:30', ti:'建水→燕子洞（约1小时）', d:['建水客运站专线车 / 打车，约28公里','建议打车前往，约50元，方便快捷']},
+    {t:'09:30–12:30', ti:'燕子洞游览（约3小时）', d:['"亚洲第一溶洞"，百万雨燕栖息，钟乳石奇观，徒手攀岩采燕窝表演','路线：旱洞徒步→悬空栈道→水洞乘船→钟乳石大厅→观燕台','门票：55元/人（含地下河游船+讲解），60岁以上半价，70岁以上免票','游船：乘船穿越800米地下暗河，钟乳石倒影如梦如幻','攀岩表演：每天10:30/14:30各一场，徒手攀岩采燕窝绝技','洞内恒温18℃左右，需带外套；地面湿滑，穿防滑鞋','步行距离：约3000步']},
+    {t:'12:30–13:30', ti:'返回建水古城，午餐', d:['返程约1小时，古城内用餐','推荐：凉米线、烧豆腐等建水小吃']},
+    {t:'13:30–14:30', ti:'收拾行李，退房', d:['整理行李，准备转场']},
+    {t:'14:30–15:30', ti:'贝山陶庄（约1小时）', d:['"紫陶城堡"，废弃紫陶与青石堆砌而成的艺术秘境','参观紫陶工坊、欣赏紫陶艺术品、了解建水紫陶烧制技艺','门票：约30元/人（私人景区，部分渠道显示70岁以上免票，建议现场确认）','园区内有台阶，部分平路，慢慢游览不累','步行距离：约1500步']},
+    {t:'15:30–16:00', ti:'前往临安酒店乘车点', d:['打车/步行至建水临安酒店乘车区']},
+    {t:'16:00–18:30', ti:'建水→弥勒 旅游大巴（约2.5小时）', d:['购票渠道：「游云南」小程序购买','参考票价：约76–85元/人','乘车点：建水县临安酒店乘车区 · 下车点：弥勒市金鼎大酒店乘车区','车辆为新能源大巴，宽敞舒适，配备USB接口','晕车提示：建议提前服用晕车药，选择前排座位']},
+    {t:'18:30–19:00', ti:'金鼎大酒店→酒店（约30分钟）', d:['打车前往汉庭酒店，约5公里']},
+    {t:'19:00–20:00', ti:'酒店办理入住 + 晚餐', d:['推荐：弥勒卤鸡米线、清汤羊肉、时蔬，少油少辣','先吃饭，符合"按时吃正餐"的核心要求']},
+    {t:'20:00–20:50', ti:'红河水乡夜景短看（可选，约45–50分钟）', d:['江南水乡风格，夜景灯光秀，音乐喷泉','门票：免费 · 全程平路，无障碍设施完善','步行距离：约2000步']},
+    {t:'21:00后', ti:'返回酒店休息', d:[]},
+  ],
+  alt:'若燕子洞体力消耗大，可改为<b>团山古村</b>（小火车已去则跳过）或<b>文庙深度游</b>'
+},
+{
+  d:'Day 7', date:'7月19日（周日）', title:'东风艺术 · 温泉疗愈', acc:COLORS.mile,
+  theme:'东风韵艺术小镇观光，下午湖泉生态园，晚上温泉体验',
+  hotel:'汉庭红河州弥勒酒店', steps:'约7500步', transit:'打车 + 观光车 + 步行', icon:'♨️',
+  rows:[
+    {t:'07:30–08:30', ti:'酒店早餐', d:[]},
+    {t:'09:00–09:30', ti:'酒店→东风韵景区（约30分钟）', d:['打车，约15公里']},
+    {t:'09:30–12:30', ti:'东风韵艺术小镇（约3小时）', d:['红砖艺术城堡，万花筒艺术馆，"东方魔幻城堡"','核心打卡：万花筒艺术馆、印章坊、半朵云、七彩花田','门票：常见约60元/人，老人优待以官方购票页/现场核验为准','观光车：20元/人（双程），必购！景区较大，节省体力','路线：入口乘观光车→万花筒艺术馆→印章坊→半朵云→七彩花田→乘车返回','步行距离：约3500步']},
+    {t:'12:30–13:30', ti:'午餐：东风韵景区内/返回市区', d:['景区内有餐厅，或返回市区用餐','推荐：弥勒卤鸡米线、羊汤锅']},
+    {t:'13:30–15:00', ti:'返回酒店，午休', d:['避开正午高温，酒店休息']},
+    {t:'15:00–17:30', ti:'湖泉生态园（约2.5小时）', d:['"弥勒小三亚"，1700亩湖面+万平米白沙滩，椰林沙滩','活动：沙滩漫步、黑天鹅观赏、湖边散步、看日落','门票：免费 · 可租电瓶车/自行车环湖（约5公里），推荐电瓶车省力','下午4点后阳光柔和，适合户外活动','步行距离：约3000步']},
+    {t:'17:30–18:30', ti:'晚餐', d:['湖泉生态园附近餐厅']},
+    {t:'19:00–21:00', ti:'湖泉半山温泉体验（约2小时）', d:['34个温泉泡池，半山森林温泉，环境优美','门票：约120元/人（住湖泉酒店免票，住其他酒店需购票）','建议选择温度适中的泡池（38–40℃），老人每次泡15–20分钟休息一次','泡温泉前不要空腹或过饱；带好泳衣、拖鞋；及时补充水分','温泉区有电瓶车接送各泡池','步行距离：约1000步']},
+    {t:'21:00后', ti:'返回酒店休息', d:['泡完温泉好好休息，缓解疲劳']},
+  ],
+  safety:'老人泡温泉时间不宜过长，每次15–20分钟起身休息；及时补充水分；感觉头晕胸闷立即起身到通风处休息。',
+  alt:'若东风韵人多，可改为<b>可邑小镇</b>（彝族文化小镇，门票约60元，约3小时）或<b>锦屏山</b>（弥勒大佛，门票约50元，约2小时）'
+},
+{
+  d:'Day 8', date:'7月20日（周一）', title:'生态休闲 · 返程昆明', acc:COLORS.kunming,
+  theme:'上午湖泉生态园休闲，下午乘高铁返回昆明，入住机场附近酒店',
+  hotel:'昆明长水国际机场美居酒店', steps:'约5000步', transit:'高铁 + 地铁 + 步行', icon:'🏝️',
+  rows:[
+    {t:'08:00–09:00', ti:'酒店早餐', d:['慢慢享用，不赶时间']},
+    {t:'09:30–11:30', ti:'湖泉生态园深度休闲（约2小时）', d:['活动：湖边散步、喂天鹅、沙滩休憩、茶室品茶','选择一处安静的地方，享受慢时光','若昨日未逛完的景点，今天可以补上','步行距离：约2000步']},
+    {t:'11:30–12:30', ti:'收拾行李，退房', d:[]},
+    {t:'12:30–13:30', ti:'午餐', d:['弥勒市区特色餐厅，最后一顿弥勒美食','推荐：弥勒卤鸡、凉鸡米线']},
+    {t:'13:30–14:00', ti:'前往弥勒站（约30分钟）', d:['打车前往弥勒高铁站']},
+    {t:'15:58–17:08', ti:'弥勒→昆明 动车（参考 D3815，车程约1小时10分钟）', d:['购票渠道：12306','参考票价：二等座约44.5元/人','7月20日车票需开售后复核；若实际车次变化，优先选择15:00–16:30之间发车、可接地铁去机场的动车']},
+    {t:'17:10–18:35', ti:'昆明站/昆明南站→机场酒店（约65–80分钟）', d:['若到昆明南站：地铁1号线→东部汽车站→地铁6号线→机场中心站','若到昆明站：地铁2号线→塘子巷站→地铁6号线→机场中心站','全程约50分钟，票价约7元','步行距离：约1500步']},
+    {t:'16:00–17:00', ti:'酒店办理入住，休整', d:['好好休息，为第二天返程养精蓄锐']},
+    {t:'17:00–19:00', ti:'机场周边散步/休息', d:['酒店附近简单散步，或在酒店休息','步行距离：约1500步']},
+    {t:'19:00–20:00', ti:'晚餐', d:['酒店内或附近餐厅用餐']},
+    {t:'20:00后', ti:'早休息', d:['第二天航班较早，早点休息','定好闹钟，收拾好行李']},
+  ],
+  alt:'若抵达昆明较早且体力尚可，可增加<b>云南省博物馆</b>（免费，室内，约2小时），但建议以休息为主'
+},
+{
+  d:'Day 9', date:'7月21日（周二）', title:'送机返程回家', acc:['#857c6b','#5e574b'],
+  theme:'送机返程，不安排景点',
+  hotel:'—', steps:'约3000步', transit:'接送机 + 飞机 + 高铁', icon:'🏠',
+  rows:[
+    {t:'07:00–07:30', ti:'起床，收拾行李', d:['检查证件、手机、充电器等重要物品']},
+    {t:'07:30–08:00', ti:'酒店早餐/简餐', d:[]},
+    {t:'08:00–08:30', ti:'前往机场航站楼', d:['酒店一般有免费接送机服务，或步行/打车前往','美居酒店通常距离机场很近，10分钟内可达']},
+    {t:'08:30–09:25', ti:'办理值机、安检', d:['预留充足时间，不慌不忙']},
+    {t:'09:55–11:20', ti:'MU5845航班 昆明→成都天府（飞行约1小时25分钟）', d:[]},
+    {t:'11:20–12:00', ti:'抵达成都天府机场', d:['取行李，稍作休息']},
+    {t:'12:00–13:00', ti:'机场午餐', d:[]},
+    {t:'13:00–14:30', ti:'天府机场午餐与候车休息', d:['不赶12点多高铁，先吃饭、取行李、上厕所','步行距离：约800步']},
+    {t:'15:06–15:35 或 15:53–16:34', ti:'天府机场站→自贡站（开售后优先看 G5765 或 C6119）', d:['购票渠道：12306','参考票价：二等座约58–59元/人','7月21日车票需开售后复核']},
+    {t:'16:50–18:15左右', ti:'自贡站→荣县（约75–90分钟）', d:['预约网约车/定制车直达荣县','若当天高铁不合适，再选择天府机场直达荣县包车/拼车备选']},
+    {t:'18:15左右', ti:'抵达荣县，行程结束', d:['🎉 滇南慢游圆满收官']},
+  ],
+  alt:null
+},
+];
+
+const TIPS = [
+  {icon:'☀️', n:'01', t:'防晒防护', a:COLORS.kunming, items:['云南紫外线是平原的2–3倍，即使阴天也需防晒','选SPF50+、PA++++高倍防晒霜，每2–3小时补涂一次','物理防晒更重要：宽檐帽、偏光墨镜、防晒衣','颈部、手背等容易忽略的部位也要做好']},
+  {icon:'🌧️', n:'02', t:'防雨防潮', a:COLORS.fuxian, items:['7–8月雨季多为短时阵雨，来得快去得也快','随身携带便携雨衣（比雨伞实用，解放双手）','准备防水鞋套，保护鞋子不被打湿','手机/充电宝等电子设备准备防水袋','古镇石板路雨后湿滑，穿防滑运动鞋']},
+  {icon:'🌡️', n:'03', t:'温差应对', a:['#5b3a52','#3a2435'], items:['昼夜温差大可达5–15℃，"一天有四季"','采用"洋葱式穿衣法"，方便穿脱','必备薄外套/冲锋衣（防风防雨）','溶洞内恒温18℃左右，进入前加一件薄外套']},
+  {icon:'⛰️', n:'04', t:'高原适应', a:COLORS.mile, items:['昆明海拔约1900米，部分人可能有轻微高原反应','动作放缓，不要跑跳，上下楼梯慢一点','多喝水，少量多次，保持身体水分','保证充足睡眠，不要过度疲劳','饮食清淡，不要暴饮暴食']},
+  {icon:'🥵', n:'05', t:'防暑降温', a:['#b5532a','#8f3d1d'], items:['避开正午12:00–14:00的暴晒时段，安排室内活动或午休','随身携带藿香正气水、十滴水等防暑药品','随身携带保温杯，装温开水/淡盐水补充电解质','感觉头晕心慌出虚汗时，立即到阴凉通风处休息']},
+  {icon:'🥢', n:'06', t:'肠胃防护', a:COLORS.kunming, items:['饮食变化易引起肠胃不适，备蒙脱石散、益生菌','选择正规餐厅用餐，不吃路边不洁食物','野生菌一定要去正规餐厅食用，不要自行采摘','喝瓶装水或烧开的水，不喝生水']},
+  {icon:'🦟', n:'07', t:'防蚊防虫', a:COLORS.fuxian, items:['湖边、湿地、森林等地方蚊虫较多','随身携带驱蚊液/花露水，每2–3小时补喷一次','穿长裤长袖，减少皮肤暴露','被蚊虫叮咬后及时涂抹药膏，不要抓挠']},
+];
+
+const PACKING = {
+  '防晒防雨类（必带）':[
+    {n:'高倍防晒霜（SPF50+）',d:'面部+身体都需要，每2–3小时补涂'},
+    {n:'宽檐遮阳帽',d:'能遮住脸部和颈部最好'},
+    {n:'偏光墨镜',d:'保护眼睛，高原紫外线强'},
+    {n:'防晒衣/长袖薄外套',d:'UPF50+最佳，物理防晒更靠谱'},
+    {n:'防晒冰袖',d:'手臂防晒，方便穿脱'},
+    {n:'晴雨伞',d:'银胶/黑胶涂层，防晒防雨两用'},
+    {n:'便携一次性雨衣',d:'比雨伞实用，解放双手'},
+    {n:'防水鞋套',d:'保护鞋子不被雨水打湿'},
+  ],
+  '衣物类':[
+    {n:'短袖T恤（3–4件）',d:'透气吸汗材质，方便换洗'},
+    {n:'薄外套/冲锋衣',d:'防风防雨，早晚和空调房必备'},
+    {n:'长裤（2–3条）',d:'防蚊防晒，推荐速干材质'},
+    {n:'薄毛衣/抓绒',d:'早晚温差大，保暖用'},
+    {n:'舒适防滑运动鞋（2双）',d:'轮换着穿，保持干爽'},
+    {n:'凉鞋/拖鞋',d:'酒店穿或水边散步'},
+    {n:'泳衣',d:'泡温泉用'},
+  ],
+  '药品类（必带）':[
+    {n:'慢性病药物',d:'按出行天数多备1–2日，分装药盒标注早中晚'},
+    {n:'防暑药',d:'藿香正气水、十滴水'},
+    {n:'肠胃药',d:'蒙脱石散、益生菌、健胃消食片'},
+    {n:'晕车药',d:'老人晕车必备，提前30分钟服用'},
+    {n:'感冒药',d:'温差大容易感冒'},
+    {n:'创可贴+消毒棉片',d:'小伤口处理'},
+    {n:'驱蚊液/花露水',d:'湖边蚊虫多'},
+    {n:'硝酸甘油/速效救心丸',d:'应急备用（如有需要）'},
+  ],
+  '其他必备':[
+    {n:'保温杯',d:'装温开水/淡盐水，随时喝热水'},
+    {n:'便携血压计',d:'如需监测血压'},
+    {n:'健康卡',d:'写明病史、用药、紧急联系人'},
+    {n:'身份证',d:'老人优待凭证，必带！'},
+    {n:'充电宝',d:'大容量，保证手机随时有电'},
+    {n:'手机防水袋',d:'雨天/水边用'},
+    {n:'湿纸巾、纸巾',d:'清洁用'},
+    {n:'轻便折叠手杖',d:'如需辅助行走'},
+    {n:'小零食',d:'饼干、水果，补充能量'},
+  ],
+};
+
+const POLICY = [
+  {n:'翠湖公园',p:'免费',tag:'free',o:'免费开放',a:'全程平缓步道，可免费借轮椅（押金200元），多处休息座椅',h:'全天开放'},
+  {n:'海埂大坝',p:'免费',tag:'free',o:'免费开放',a:'2公里平坦坝道，可推轮椅，沿途有观光电瓶车（可选）',h:'全天开放'},
+  {n:'斗南花市',p:'免费',tag:'free',o:'免费进入',a:'室内恒温防滑地面，电梯直达各层，多处休息区',h:'全天开放'},
+  {n:'禄充风景区',p:'15元/人',tag:'paid',o:'凭身份证免票',a:'湖边平路为主，多处休息亭，古榕树下乘凉',h:'8:00–19:00'},
+  {n:'澄江化石地博物馆',p:'免费',tag:'free',o:'免费（需预约）',a:'室内展馆，电梯直达，全程平路，无障碍设施完善',h:'9:00–17:00（周一闭馆）'},
+  {n:'建水古城',p:'免费',tag:'free',o:'免费进入',a:'石板路相对平坦，注意防滑，可乘坐古城观光车（可选）',h:'全天开放'},
+  {n:'建水米轨小火车',p:'约100元',tag:'check',o:'以官方购票页和现场核验为准',a:'火车座位舒适，各站平路游览，团山古村可坐电瓶车',h:'9:00、14:30各一班'},
+  {n:'朱家花园',p:'50元/人',tag:'paid',o:'70岁以上免票',a:'平路为主，部分门槛，注意脚下',h:'8:00–18:00'},
+  {n:'燕子洞',p:'55元/人',tag:'paid',o:'60岁以上半价28元，70岁以上免票',a:'洞内有栈道，部分台阶；地下河游船代步（800米）',h:'8:30–17:30'},
+  {n:'贝山陶庄',p:'约30元/人',tag:'check',o:'以现场核验为准',a:'园区内有台阶，部分平路，慢慢游览不累',h:'8:30–18:00'},
+  {n:'东风韵',p:'约60元/人',tag:'check',o:'以官方购票页/现场核验为准',a:'景区观光车20元双程（必购），各景点间乘车代步',h:'8:30–21:00'},
+  {n:'湖泉生态园',p:'免费',tag:'free',o:'免费开放',a:'可租电瓶车/自行车环湖（约5公里），推荐电瓶车省力',h:'全天开放'},
+  {n:'湖泉半山温泉',p:'约120元/人起',tag:'check',o:'以景区/平台当日页面为准',a:'温泉区有电瓶车接送各泡池',h:'10:00–23:00'},
+  {n:'红河水乡',p:'免费',tag:'free',o:'免费开放',a:'全程平路，无障碍设施完善',h:'全天开放'},
+];
+
+const TRANSPORT = [
+  {tag:'去程·返程', from:'荣县', to:'成都天府国际机场', rows:[
+    {t:'拼车/包车（推荐）', d:'提前预约，按需发车 · 约2小时10分钟', p:'拼车80–100 / 包车300–400元'},
+    {t:'高铁+地铁', d:'威远→成都东（多班次）/ 成都东→天府机场（地铁18号线）· 高铁约1h + 地铁约1h', p:'高铁约75 + 地铁约10元'},
+  ], note:'<b>去程建议：</b>8L9948航班14:05起飞，推荐荣县→自贡站短车程 + 自贡站→天府机场站高铁接驳，10:55左右抵达更稳。<br/><b>返程建议：</b>MU5845约中午前后抵达天府机场，先午餐休息，再优先选天府机场站→自贡站高铁，最后自贡站→荣县。'},
+  {tag:'机场·市区', from:'昆明长水机场', to:'昆明市区', rows:[
+    {t:'地铁6号线', d:'6:20–23:00 · 机场中心站→塘子巷站 · 每10分钟一班 · 约25–35分钟', p:'5–6元'},
+    {t:'机场大巴', d:'5:00–次日凌晨 · 空港1号线→小西门 · 约40–70分钟', p:'25元'},
+    {t:'打车/网约车', d:'24小时 · 方便快捷，适合带老人和行李 · 约40分钟', p:'80–120元'},
+  ], note:null},
+  {tag:'直通车', from:'昆明南站', to:'澄江化石地博物馆（抚仙湖）', rows:[
+    {t:'景区直通车', d:'多班次，约每小时一班 · 约40分钟 · 「抚仙湖悠生活」小程序预订', p:'约50元/人'},
+  ], note:'<b>去程推荐：</b>Day2下午15:00左右从昆明南站出发，15:40抵达澄江化石地博物馆（酒店附近）。<br/><b>返程推荐：</b>Day4下午13:30左右出发，14:10抵达昆明南站。'},
+  {tag:'高铁', from:'昆明南站', to:'建水', rows:[
+    {t:'C577', d:'07:53–09:47 · 1小时54分 · 12306', p:'二等座51元'},
+    {t:'C559', d:'18:36–20:22 · 1小时46分 · 12306', p:'二等座51元'},
+    {t:'其他班次', d:'多数从昆明站上车或早班为主 · 约1小时40分–2小时', p:'约51元'},
+  ], note:'<b>推荐班次：</b>Day4按当前可查车次推荐 C559 18:36–20:22；若临近出行新增15:00–17:30昆明南可上车车次，再优先替换。'},
+  {tag:'旅游大巴', from:'建水', to:'弥勒', rows:[
+    {t:'旅游大巴', d:'14:30、16:00各一班 · 约2.5小时 · 「游云南」小程序', p:'约76–85元/人'},
+  ], note:'<b>乘车点：</b>建水县临安酒店乘车区<br/><b>下车点：</b>弥勒市金鼎大酒店乘车区<br/><b>推荐：</b>Day6下午16:00班次，18:30左右抵达弥勒。每天班次较少，建议提前购票；老人晕车建议提前服药、选前排。'},
+  {tag:'动车', from:'弥勒', to:'昆明', rows:[
+    {t:'多班次', d:'07:00–21:00密集班次 · 约35–45分钟 · 12306', p:'二等座34元起'},
+  ], note:'<b>推荐班次：</b>Day8优先看 D3815 参考15:58–17:08；若7月20日实际车次有调整，选择15:00–16:30发车且能接地铁去长水机场的动车。<br/><b>抵达后交通：</b>地铁6号线直达长水机场，约25–35分钟。'},
+];
+
+const FOOD = [
+  {e:'🍄', n:'野生菌火锅', d:'6–9月菌子季，土鸡火腿吊汤，十几种鲜菌，鲜美无比', p:'菌子王 / 一朵菌', region:'昆明', tags:['时令限定','必尝TOP1'], stars:5, meta:'6–9月限定'},
+  {e:'🍜', n:'过桥米线', d:'鸡汤汤底，配料丰富，云南招牌美食，老少皆宜', p:'建新园 / 桥香园', region:'昆明', tags:['招牌','清淡可选'], stars:5, meta:'昆明老字号'},
+  {e:'🐟', n:'铜锅鱼', d:'抚仙湖特产，清汤锅底，原汁原味，鲜美不辣', p:'禄充村渔家餐厅', region:'抚仙湖', tags:['湖鲜','不辣'], stars:5, meta:'湖畔现捞'},
+  {e:'🍲', n:'汽锅鸡', d:'建水特色，蒸汽蒸熟，汤鲜肉嫩，滋补养胃', p:'临安饭店', region:'建水', tags:['滋补','清甜'], stars:5, meta:'建水名菜'},
+  {e:'🫘', n:'建水豆腐', d:'西门豆腐、烧豆腐，蘸水丰富，可选不辣口味', p:'西门豆腐坊', region:'建水', tags:['小吃','可辣可不辣'], stars:4, meta:'600年古井水点制'},
+  {e:'🌿', n:'草芽米线', d:'建水特有草芽，脆嫩鲜美，仅建水可尝', p:'临安饭店', region:'建水', tags:['建水独有','脆嫩'], stars:5, meta:'建水独有食材'},
+  {e:'🍗', n:'弥勒卤鸡', d:'弥勒特色，卤香浓郁，皮酥肉嫩', p:'卤鸡米线店', region:'弥勒', tags:['弥勒招牌','卤香'], stars:5, meta:'弥勒城市名片'},
+  {e:'🍚', n:'洋芋焖饭', d:'云南特色主食，香糯可口，配铜锅鱼绝佳', p:'抚仙湖周边', region:'抚仙湖', tags:['主食','香糯'], stars:4, meta:'铜锅鱼黄金搭档'},
+];
+
+const PRINCIPLES = [
+  {n:'01', t:'必须煮熟煮透', d:'煮沸后继续煮15–20分钟以上，正规店家会按铃提示开锅，未煮熟前绝对不要尝'},
+  {n:'02', t:'不混吃多种菌', d:'一次只吃一种菌，避免毒素叠加，增加中毒风险'},
+  {n:'03', t:'不凉拌、不生吃', d:'毒菌凉拌死亡率极高，一定要高温烹煮'},
+  {n:'04', t:'吃菌不喝酒', d:'酒精会加速毒素扩散，加重中毒症状'},
+  {n:'05', t:'选择正规餐厅', d:'只去有资质、口碑好的正规餐厅，不吃路边流动商贩的菌子'},
+  {n:'06', t:'首次尝试适量', d:'第一次吃某种菌子不要吃太多，部分人可能有轻微过敏反应'},
+  {n:'07', t:'留样备份', d:'煮菌前拍照或留少量样本，万一中毒可帮助医生快速判断菌种'},
+  {n:'08', t:'不自行采摘', d:'绝对不要自行采摘野生菌，很多毒菌与食用菌外观极其相似'},
+];
+
+const DANGERS = [
+  {n:'鹅膏菌属', d:'致命白毒伞、灰花纹鹅膏等，致死率极高，一颗即可致命'},
+  {n:'见手青类', d:'部分品种可食用，但处理不当易中毒，出现幻觉等症状'},
+  {n:'红菇类', d:'部分红菇有毒，难以辨别'},
+];
+
+/* ============================================================
+   渲染 / Render
+   ============================================================ */
+const $ = (s,p=document)=>p.querySelector(s);
+const $$ = (s,p=document)=>[...p.querySelectorAll(s)];
+
+// overview cards
+const ovGrid = $('#ovGrid');
+OVERVIEW.forEach((o,i)=>{
+  const pct = Math.round(o.steps/10000*100);
+  const el = document.createElement('div');
+  el.className='ov-card reveal-up';
+  el.style.setProperty('--accent', o.acc[0]);
+  el.innerHTML = `
+    <div class="day-no">${o.d.replace('Day ','D')}</div>
+    <div class="date">${o.date} · ${o.city}</div>
+    <div class="theme">${o.theme}</div>
+    <div class="hotel"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21V7l9-4 9 4v14"/><path d="M9 21v-6h6v6"/></svg><span>${o.hotel}</span></div>
+    <div class="steps"><span>${o.steps.toLocaleString()}步</span><div class="steps-bar"><i style="width:${pct}%"></i></div></div>`;
+  el.addEventListener('click',()=>{
+    document.getElementById('itinerary').scrollIntoView({behavior:'smooth'});
+    setTimeout(()=>openDay(i), 700);
+  });
+  ovGrid.appendChild(el);
+});
+
+// day nav + cards
+const dayNav = $('#dayNav'), dayList = $('#dayList');
+
+// 从 localStorage 读取已完成的行程步骤
+let doneItinSet = new Set();
+try {
+  const savedItin = localStorage.getItem('yn_travel_itin_done');
+  if (savedItin) {
+    JSON.parse(savedItin).forEach(k => doneItinSet.add(k));
+  }
+} catch (e) {
+  console.error('Failed to load itinerary progress:', e);
+}
+
+DAYS.forEach((day,i)=>{
+  const link = document.createElement('div');
+  link.className='day-link'; link.dataset.idx=i;
+  link.innerHTML = `<span class="nd">${day.d}</span><span>${day.date.split('（')[0]}</span>`;
+  link.addEventListener('click',()=>{ openDay(i); scrollDayIntoView(i); });
+  dayNav.appendChild(link);
+
+  const rowsHtml = day.rows.map((r, rIdx)=>{
+    const key = i + '-' + rIdx;
+    const isDone = doneItinSet.has(key);
+    return `
+    <div class="tl-row${isDone ? ' done' : ''}" data-day="${i}" data-row="${rIdx}">
+      <span class="tl-circle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5"><path d="M5 12l5 5L20 7"/></svg></span>
+      <div class="tl-time">${r.t}</div>
+      <div class="tl-title">${r.ti}</div>
+      <div class="tl-desc">${r.d.map(x=>`<div class="bullet">${x}</div>`).join('')}</div>
+    </div>`;
+  }).join('');
+
+  const card = document.createElement('article');
+  card.className='day-card reveal-up'; card.dataset.idx=i;
+  card.style.setProperty('--accent', day.acc[0]);
+  card.style.setProperty('--accent-2', day.acc[1]);
+  card.id = 'day-'+i;
+  card.innerHTML = `
+    <div class="dc-head">
+      <div class="tag-row"><span class="dnum">${day.d}</span><span style="color:var(--muted);font-size:.85rem">${day.date}</span></div>
+      <div class="dtitle">${day.icon} ${day.title}</div>
+      <div class="dsub">
+        <span>🏨 ${day.hotel}</span>
+        <span>🚶 ${day.steps}</span>
+        <span>🚗 ${day.transit}</span>
+      </div>
+      <div class="toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg></div>
+    </div>
+    <div class="dc-body"><div class="dc-inner">
+      <div class="dc-theme-banner"><span class="ico">${day.icon}</span><span class="txt">${day.theme}</span></div>
+      <div class="tl">${rowsHtml}</div>
+      ${day.safety?`<div class="dc-safety"><span>⚠️</span><span><b>安全提示：</b>${day.safety}</span></div>`:''}
+      ${day.alt?`<div class="dc-alt"><b>备选：</b>${day.alt}</div>`:''}
+    </div></div>`;
+  card.querySelector('.dc-head').addEventListener('click',()=>toggleDay(i));
+  dayList.appendChild(card);
+});
+
+function openDay(i){
+  const c = dayList.children[i];
+  if(!c.classList.contains('open')){
+    c.classList.add('open');
+    requestAnimationFrame(()=>gsap.fromTo(c.querySelectorAll('.tl-row'),{autoAlpha:0,x:-20},{autoAlpha:1,x:0,duration:.5,stagger:.05,ease:'power2.out',delay:.1}));
+  }
+}
+function toggleDay(i){
+  const c = dayList.children[i];
+  const opening = !c.classList.contains('open');
+  c.classList.toggle('open');
+  if(opening){
+    requestAnimationFrame(()=>gsap.fromTo(c.querySelectorAll('.tl-row'),{autoAlpha:0,x:-20},{autoAlpha:1,x:0,duration:.5,stagger:.05,ease:'power2.out',delay:.1}));
+  }
+}
+function scrollDayIntoView(i){
+  const c = dayList.children[i];
+  const y = c.getBoundingClientRect().top + window.scrollY - 80;
+  window.scrollTo({top:y, behavior:'smooth'});
+}
+
+// tips cards
+const tipsGrid = $('#tipsGrid');
+TIPS.forEach(t=>{
+  const el = document.createElement('div');
+  el.className='feature-card reveal-up';
+  el.style.setProperty('--accent', t.a[0]); el.style.setProperty('--accent-2', t.a[1]);
+  el.innerHTML = `<div class="fnum">${t.n}</div>
+    <div class="ficon">${t.icon}</div>
+    <div class="ftitle">${t.t}</div>
+    <ul class="flist">${t.items.map(x=>`<li>${x}</li>`).join('')}</ul>`;
+  tipsGrid.appendChild(el);
+});
+
+// packing
+const packTabs=$('#packTabs'), packPanels=$('#packPanels');
+let totalItems=0;
+
+// 从 localStorage 读取已勾选物品
+let doneSet = new Set();
+try {
+  const savedPack = localStorage.getItem('yn_travel_packing_done');
+  if (savedPack) {
+    JSON.parse(savedPack).forEach(k => doneSet.add(k));
+  }
+} catch (e) {
+  console.error('Failed to load packing progress:', e);
+}
+
+Object.entries(PACKING).forEach(([cat,items],idx)=>{
+  totalItems += items.length;
+  const tab=document.createElement('div');
+  tab.className='ptab'+(idx===0?' active':''); tab.dataset.cat=cat; tab.textContent=cat;
+  tab.addEventListener('click',()=>{
+    $$('.ptab').forEach(x=>x.classList.remove('active'));
+    tab.classList.add('active');
+    $$('.packing-panel').forEach(p=>p.classList.remove('active'));
+    $('#packPanel-'+idx).classList.add('active');
+  });
+  packTabs.appendChild(tab);
+
+  const panel=document.createElement('div');
+  panel.className='packing-panel'+(idx===0?' active':''); panel.id='packPanel-'+idx;
+  panel.innerHTML=`<div class="check-grid">${items.map((it,i)=>{
+    const key = idx + '-' + i;
+    const isDone = doneSet.has(key);
+    return `
+    <div class="check-item${isDone ? ' done' : ''}" data-cat="${idx}" data-item="${i}">
+      <div class="box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg></div>
+      <div class="lbl">${it.n}<small>${it.d}</small></div>
+    </div>`;
+  }).join('')}</div>`;
+  packPanels.appendChild(panel);
+});
+$('#totalCount').textContent = totalItems;
+$('#doneCount').textContent = doneSet.size;
+$('#packBar').style.width = (totalItems > 0 ? (doneSet.size/totalItems*100) : 0)+'%';
+
+// packing interaction
+packPanels.addEventListener('click', e=>{
+  const item = e.target.closest('.check-item');
+  if(!item) return;
+  const key = item.dataset.cat+'-'+item.dataset.item;
+  if(doneSet.has(key)){ doneSet.delete(key); item.classList.remove('done'); }
+  else { doneSet.add(key); item.classList.add('done');
+    gsap.fromTo(item.querySelector('.box'),{scale:.7},{scale:1,duration:.5,ease:'back.out(2.5)'});
+  }
+  $('#doneCount').textContent = doneSet.size;
+  $('#packBar').style.width = (doneSet.size/totalItems*100)+'%';
+  
+  // 保存勾选状态
+  try {
+    localStorage.setItem('yn_travel_packing_done', JSON.stringify(Array.from(doneSet)));
+  } catch (e) {
+    console.error('Failed to save packing progress:', e);
+  }
+});
+
+// 行程打勾交互 (事件委托)
+dayList.addEventListener('click', e => {
+  const circle = e.target.closest('.tl-circle');
+  if (!circle) return;
+  const row = circle.closest('.tl-row');
+  if (!row) return;
+  
+  const dayIdx = row.dataset.day;
+  const rowIdx = row.dataset.row;
+  const key = dayIdx + '-' + rowIdx;
+  
+  if (doneItinSet.has(key)) {
+    doneItinSet.delete(key);
+    row.classList.remove('done');
+  } else {
+    doneItinSet.add(key);
+    row.classList.add('done');
+    gsap.fromTo(circle, {scale: 0.8}, {scale: 1, duration: 0.3, ease: 'back.out(2)'});
+  }
+  
+  // 保存到 localStorage
+  try {
+    localStorage.setItem('yn_travel_itin_done', JSON.stringify(Array.from(doneItinSet)));
+  } catch (e) {
+    console.error('Failed to save itinerary progress:', e);
+  }
+});
+
+// policy table
+const policyBody = $('#policyBody');
+POLICY.forEach(p=>{
+  const tr=document.createElement('tr');
+  tr.innerHTML=`<td><span class="scenic-name">${p.n}</span></td>
+    <td><span class="tag ${p.tag}">${p.p}</span></td>
+    <td>${p.o}</td>
+    <td>${p.a}</td>
+    <td>${p.h}</td>`;
+  policyBody.appendChild(tr);
+});
+
+// transport
+const tranGrid=$('#tranGrid');
+TRANSPORT.forEach(t=>{
+  const el=document.createElement('div');
+  el.className='tran-card reveal-up';
+  el.innerHTML=`<div class="route-head">
+      <div class="fromto"><span>${t.from}</span><span class="arr">→</span><span>${t.to}</span></div>
+      <span class="trtag">${t.tag}</span></div>
+    <div class="tran-list">${t.rows.map(r=>`<div class="tran-row"><span class="t">${r.t}</span><span class="d">${r.d}</span><span class="p">${r.p}</span></div>`).join('')}</div>
+    ${t.note?`<div class="tran-note">${t.note}</div>`:''}`;
+  tranGrid.appendChild(el);
+});
+
+// food
+const REGION_COLOR = {'昆明':COLORS.kunming,'抚仙湖':COLORS.fuxian,'建水':COLORS.jianshui,'弥勒':COLORS.mile};
+const foodGrid=$('#foodGrid');
+FOOD.forEach(f=>{
+  const acc = REGION_COLOR[f.region] || COLORS.kunming;
+  const el=document.createElement('div');
+  el.className='food-card reveal-up';
+  el.style.setProperty('--accent', acc[0]);
+  el.style.setProperty('--accent-2', acc[1]);
+  const starStr = '★'.repeat(f.stars) + '☆'.repeat(5-f.stars);
+  el.innerHTML=`
+    <div class="ftop"><span class="emoji">${f.e}</span><span class="region">${f.region}</span></div>
+    <div class="fbody">
+      <div class="fname">${f.n}</div>
+      <div class="fdesc">${f.d}</div>
+      <div class="ftags">${f.tags.map(t=>`<span class="ftag">${t}</span>`).join('')}</div>
+      <div class="frating"><span class="stars">${starStr}</span><span>${f.meta}</span></div>
+      <div class="fplace">📍 ${f.p}</div>
+    </div>`;
+  foodGrid.appendChild(el);
+});
+
+// principles & dangers
+$('#principleGrid').innerHTML = PRINCIPLES.map(p=>`<div class="principle"><div class="pn">${p.n}</div><div class="pt">${p.t}</div><div class="pd">${p.d}</div></div>`).join('');
+$('#dangerGrid').innerHTML = DANGERS.map(d=>`<div class="danger"><div class="dn">☠️ ${d.n}</div><div class="dd">${d.d}</div></div>`).join('');
+
+
+/* ============================================================
+   动画 / GSAP
+   ============================================================ */
+gsap.registerPlugin(ScrollTrigger);
+
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+gsap.matchMedia().add('(prefers-reduced-motion: no-preference)', ()=>{
+
+  // hero entrance timeline
+  const heroTl = gsap.timeline({defaults:{ease:'power3.out'}});
+  heroTl.from('.hero .kicker',{y:30,autoAlpha:0,duration:.7})
+    .from('.hero h1 .line',{y:80,autoAlpha:0,duration:.9,stagger:.12,ease:'power4.out'},'-=.3')
+    .from('.hero .sub',{y:24,autoAlpha:0,duration:.7},'-=.4')
+    .from('.hero .chip',{y:18,autoAlpha:0,duration:.5,stagger:.07},'-=.3')
+    .from('.hero .stat',{y:30,autoAlpha:0,duration:.6,stagger:.1},'-=.2');
+
+  // hero parallax
+  gsap.to('.sun',{yPercent:30,scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:1}});
+  $$('[data-parallax]').forEach(el=>{
+    const f=parseFloat(el.dataset.parallax);
+    gsap.to(el,{yPercent:f*100,scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:1}});
+  });
+
+  // count up
+  $$('.stat .num').forEach(el=>{
+    const target = +el.dataset.count;
+    ScrollTrigger.create({
+      trigger:el, start:'top 90%', once:true,
+      onEnter:()=>{
+        gsap.fromTo(el,{textContent:0},{textContent:target,duration:1.6,ease:'power2.out',snap:{textContent:1}});
+      }
+    });
+  });
+
+  // generic reveal
+  gsap.utils.toArray('.reveal').forEach(el=>{
+    ScrollTrigger.create({trigger:el,start:'top 85%',once:true,onEnter:()=>gsap.to(el,{autoAlpha:1,y:0,duration:.9,ease:'power3.out'})});
+  });
+  gsap.utils.toArray('.reveal-up').forEach(el=>{
+    ScrollTrigger.create({trigger:el,start:'top 88%',once:true,onEnter:()=>gsap.to(el,{autoAlpha:1,y:0,duration:.7,ease:'power3.out'})});
+  });
+
+  // day nav active highlight
+  const navLinks = $$('.day-link');
+  DAYS.forEach((_,i)=>{
+    ScrollTrigger.create({
+      trigger:'#day-'+i, start:'top 50%', end:'bottom 50%',
+      onToggle:self=>{
+        if(self.isActive){
+          navLinks.forEach(l=>l.classList.remove('active'));
+          navLinks[i].classList.add('active');
+        }
+      }
+    });
+  });
+});
+
+// ensure visible if reduced motion
+if(reduceMotion){
+  $$('.reveal,.reveal-up').forEach(el=>{el.style.opacity=1;el.style.transform='none';});
+}
+
+// progress bar
+const progressBar = $('#progress');
+window.addEventListener('scroll',()=>{
+  const h = document.documentElement;
+  const pct = (h.scrollTop/(h.scrollHeight-h.clientHeight))*100;
+  progressBar.style.width = pct+'%';
+  $('#topnav').classList.toggle('scrolled', h.scrollTop>40);
+}, {passive:true});
+
+// sticky day nav on desktop (toggled while scrolling the itinerary section)
+const dayNavEl = $('#dayNav');
+ScrollTrigger.create({trigger:'#itinerary',start:'top 90px',end:'bottom bottom',onToggle:self=>{
+  if(window.innerWidth>=980) dayNavEl.classList.toggle('sticky', self.isActive);
+}});
+
+// open first day by default after a moment
+setTimeout(()=>openDay(0), 1400);
+
+</script>
+</body>
+</html>
